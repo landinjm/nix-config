@@ -215,15 +215,6 @@
         action = "<cmd>w<cr>";
         desc = "Save file";
       }
-
-      # Deactivate "esc"
-      {
-        key = "<esc>";
-        mode = ["n" "i" "v"];
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable Escape";
-      }
     ];
   };
 }
