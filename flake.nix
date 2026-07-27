@@ -29,6 +29,8 @@
 
     stylix.url = "github:nix-community/stylix";
 
+    nvf.url = "github:notashelf/nvf";
+
     blocklist-hosts = {
       url = "github:StevenBlack/hosts";
       flake = false;
@@ -90,10 +92,10 @@
           aarch64-darwin
       */
       hosts = {
-        nephrite = {
+        trona = {
           type = "home";
           system = "x86_64-linux";
-          username = "nephrite";
+          username = "trona";
         };
       };
 

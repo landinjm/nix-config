@@ -12,6 +12,7 @@
     [
       bat
       bottom
+      clang-tools
       curl
       delta
       direnv

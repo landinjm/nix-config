@@ -11,6 +11,7 @@
     ./packages.nix
     ./git.nix
     ./shell.nix
+    ./nvf/default.nix
   ]
   ++ lib.optionals isLinux [
     ./linux.nix
