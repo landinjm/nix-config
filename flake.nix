@@ -2,55 +2,85 @@
   description = "Flake of landinjm";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
-    chaotic.url = "github:chaotic-cx/nyx";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable pkg repo
+    nixpkgs-stable.url = "nixpkgs/nixos-25.11"; # Stable pkg repo
+    chaotic.url = "github:chaotic-cx/nyx"; # Experimental pkg repo
 
+    # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # System manager
     system-manager = {
       url = "github:numtide/system-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Run graphics accelerated nix programs
     nix-system-graphics = {
       url = "github:soupglasses/nix-system-graphics";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: Set this up
+    # Window manager
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland.git?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: Set this up
+    # Lock screen
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # TODO: set this up
+    # Caelestia dots
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    caelestia-cli = {
+      url = "github:caelestia-dots/cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # KDE Plasma
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
 
-    # TODO: Idk what this does
+    # Color schemes
     stylix.url = "github:nix-community/stylix";
 
+    # Wallpapers
+    awesome-wallpapers.url = "github:anotherhadi/awesome-wallpapers";
+
+    # Neovim
     nvf.url = "github:notashelf/nvf";
 
-    # TODO: Set this up
+    # Discord
+    nixcord.url = "github:4evy/nixcord";
+
+    # Spotify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Solaar (Logitech devices)
+    solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
+
+    # DNS blocklists
     blocklist-hosts = {
       url = "github:StevenBlack/hosts";
       flake = false;
     };
 
+    # Secrets
     # TODO: Add the secrets back
     /*
     secrets = {
@@ -153,8 +183,6 @@
           ./hosts/${hostName}
 
           chaotic.nixosModules.default
-
-          nix-system-graphics.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
