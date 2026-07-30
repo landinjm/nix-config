@@ -119,7 +119,27 @@
   };
 
   programs.bash = {
-  enable = true;
+    enable = true;
+    enableCompletion = true;
+
+    initExtra = ''
+      source ~/.config/home-manager/env.sh
+    '';
+
+    shellAliases = {
+      # All roads lead to neovim
+      vim = "nvim";
+      vi = "nvim";
+      v = "nvim";
+
+      # zoxide
+      cd = "z";
+
+      # eza
+      ls = "eza --icons=always --no-quotes";
+      tree = "eza --icons=always --tree --no-quotes";
+
+    }; 
   };
 
   # Let Home Manager manage itself
