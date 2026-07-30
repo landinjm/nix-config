@@ -282,7 +282,6 @@
         git.enable = true;
         icons.enable = true;
         indentscope.enable = true;
-        map.enable = true;
         move.enable = true;
         notify.enable = true;
         pairs.enable = true;
