@@ -19,6 +19,8 @@
     scalapack
     symengine
     hdf5-mpi
+    ripgrep
+    xclip
   ];
 
   xdg.configFile."ghostty/config".text = ''
@@ -140,6 +142,71 @@
       tree = "eza --icons=always --tree --no-quotes";
 
     }; 
+  };
+
+  programs.nvf = {
+    enable = true;
+
+    settings.vim = {
+
+      ##
+      #  Mini
+      ##
+      mini = {
+        comment.enable = true;
+        cursorword.enable = true;
+        diff.enable = true;
+        git.enable = true;
+        icons.enable = true;
+        indentscope.enable = true;
+        map.enable = true;
+        move.enable = true;
+        notify.enable = true;
+        pairs.enable = true;
+        starter.enable = true;
+      };
+
+      ##
+      #  Options
+      ##
+
+      # Enable NodeJS support
+      withNodeJs = true;
+
+      # Other options
+      options = {
+      autoindent = true;
+	shiftwidth = 2;
+	signcolumn = "yes";
+	splitbelow = true;
+	splitright = true;
+	tabstop = 2;
+	termguicolors = true;
+	wrap = true;
+      };
+
+      # Global variables
+      globals = {
+        mapleader = " ";
+      };
+
+      # Clipboard options
+      clipboard = {
+        enable = true;
+	providers.wl-copy.enable = true;
+	providers.xclip.enable = true;
+	registers = "unnamedplus";
+      };
+
+      # Theme
+      theme = {
+	enable = true;
+	name = lib.mkForce "catppuccin";
+      style = lib.mkForce "mocha";
+      transparent = lib.mkForce true;
+      };
+
+    };
   };
 
   # Let Home Manager manage itself

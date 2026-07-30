@@ -91,6 +91,7 @@ outputs = inputs @ { nixpkgs, ... }: {
 
       modules = [
         inputs.stylix.homeModules.stylix
+	inputs.nvf.homeManagerModules.default
         ./hosts/trona/home.nix
       ];
     };
@@ -98,6 +99,4 @@ outputs = inputs @ { nixpkgs, ... }: {
 };
 
 }
-
-# nix run 'github:numtide/system-manager' -- switch --flake .#trona --sudo
 
