@@ -1,6 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   home.username = "trona";
   home.homeDirectory = "/home/trona";
 
@@ -19,8 +23,8 @@
     scalapack
     symengine
     hdf5-mpi
-    ripgrep
-    xclip
+    ripgrep # TODO: Move to nvp
+    xclip # TODO: Move to nvp
   ];
 
   xdg.configFile."ghostty/config".text = ''
@@ -141,140 +145,139 @@
       ls = "eza --icons=always --no-quotes";
       tree = "eza --icons=always --tree --no-quotes";
 
-    }; 
+      # TODO: Add git aliases
+    };
   };
 
   programs.nvf = {
     enable = true;
 
     settings.vim = {
-
       ##
       #  Keymaps
       ##
-      binds = {
-        whichKey = {
-          enable = true;
-        };
-      };
+      binds.whichKey.enable = true;
+
       keymaps = [
         # General mappings
         # Disable arrow keys in normal mode and middle click
-         {
-        key = "<Up>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable up arrow";
-      }
-      {
-        key = "<Down>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable down arrow";
-      }
-      {
-        key = "<Left>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable left arrow";
-      }
-      {
-        key = "<Right>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable right arrow";
-      }
-      {
-        key = "<MiddleMouse>";
-        mode = ["n" "i" "v"];
-        action = "<nop>";
-        silent = true;
-      }
-      {
-        key = "<2-MiddleMouse>";
-        mode = ["n" "i" "v"];
-        action = "<nop>";
-        silent = true;
-      }
-      {
-        key = "<3-MiddleMouse>";
-        mode = ["n" "i" "v"];
-        action = "<nop>";
-        silent = true;
-      }
+        {
+          key = "<Up>";
+          mode = "n";
+          silent = true;
+          action = "<Nop>";
+          desc = "Disable up arrow";
+        }
+        {
+          key = "<Down>";
+          mode = "n";
+          silent = true;
+          action = "<Nop>";
+          desc = "Disable down arrow";
+        }
+        {
+          key = "<Left>";
+          mode = "n";
+          silent = true;
+          action = "<Nop>";
+          desc = "Disable left arrow";
+        }
+        {
+          key = "<Right>";
+          mode = "n";
+          silent = true;
+          action = "<Nop>";
+          desc = "Disable right arrow";
+        }
+        {
+          key = "<MiddleMouse>";
+          mode = ["n" "i" "v"];
+          action = "<nop>";
+          silent = true;
+        }
+        {
+          key = "<2-MiddleMouse>";
+          mode = ["n" "i" "v"];
+          action = "<nop>";
+          silent = true;
+        }
+        {
+          key = "<3-MiddleMouse>";
+          mode = ["n" "i" "v"];
+          action = "<nop>";
+          silent = true;
+        }
 
-      # UI
+        # UI
 
-      # Windows
-{
-        key = "<leader>ws";
-        mode = "n";
-        silent = true;
-        action = "<cmd>split<cr>";
-        desc = "Split";
-      }
-      {
-        key = "<leader>wv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>vsplit<cr>";
-        desc = "VSplit";
-      }
-      {
-        key = "<leader>wd";
-        mode = "n";
-        silent = true;
-        action = "<cmd>close<cr>";
-        desc = "Close";
-      }
+        # Windows
+        {
+          key = "<leader>ws";
+          mode = "n";
+          silent = true;
+          action = "<cmd>split<cr>";
+          desc = "Split";
+        }
+        {
+          key = "<leader>wv";
+          mode = "n";
+          silent = true;
+          action = "<cmd>vsplit<cr>";
+          desc = "VSplit";
+        }
+        {
+          key = "<leader>wd";
+          mode = "n";
+          silent = true;
+          action = "<cmd>close<cr>";
+          desc = "Close";
+        }
 
         # Move
-      {
-        key = "<C-h>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>h";
-        desc = "Move to left window";
-      }
-      {
-        key = "<C-j>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>j";
-        desc = "Move to bottom window";
-      }
-      {
-        key = "<C-k>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>k";
-        desc = "Move to top window";
-      }
-      {
-        key = "<C-l>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>l";
-        desc = "Move to right window";
-      }
+        {
+          key = "<C-h>";
+          mode = "n";
+          silent = true;
+          action = "<C-w>h";
+          desc = "Move to left window";
+        }
+        {
+          key = "<C-j>";
+          mode = "n";
+          silent = true;
+          action = "<C-w>j";
+          desc = "Move to bottom window";
+        }
+        {
+          key = "<C-k>";
+          mode = "n";
+          silent = true;
+          action = "<C-w>k";
+          desc = "Move to top window";
+        }
+        {
+          key = "<C-l>";
+          mode = "n";
+          silent = true;
+          action = "<C-w>l";
+          desc = "Move to right window";
+        }
 
- # Save
-      {
-        key = "<C-s>";
-        mode = ["n" "i" "v"];
-        silent = true;
-        action = "<cmd>w<cr>";
-        desc = "Save file";
-      }
+        # Save
+        {
+          key = "<C-s>";
+          mode = ["n" "i" "v"];
+          silent = true;
+          action = "<cmd>w<cr>";
+          desc = "Save file";
+        }
       ];
 
       ##
       #  Mini
       ##
+
+      # TODO: Give a brief description of what these do
       mini = {
         comment.enable = true;
         cursorword.enable = true;
@@ -289,49 +292,187 @@
       };
 
       ##
+      #  Language Support
+      ##
+      syntaxHighlighting = true;
+
+      # Provide diagnostic information inline
+      diagnostics = {
+        enable = true;
+        config = {
+          signs = {
+            text = {
+              "vim.diagnostic.severity.Error" = " ";
+              "vim.diagnostic.severity.Warn" = " ";
+              "vim.diagnostic.severity.Hint" = " ";
+              "vim.diagnostic.severity.Info" = " ";
+            };
+          };
+          underline = true;
+          update_in_insert = true;
+          virtual_text = {
+            format =
+              lib.generators.mkLuaInline
+              /*
+              lua
+              */
+              ''
+                function(diagnostic)
+                  return string.format("%s", diagnostic.message)
+                  --return string.format("%s (%s)", diagnostic.message, diagnostic.source)
+                end
+              '';
+          };
+        };
+        nvim-lint.enable = true;
+      };
+
+      # Treesitter for syntax highlighting
+      # TODO: Do I need any other languages?
+      treesitter = {
+        enable = true;
+        autotagHtml = true;
+        context.enable = true;
+        highlight.enable = true;
+      };
+
+      # Autocomplete
+      autocomplete = {
+        nvim-cmp = {
+          enable = true;
+        };
+      };
+
+      # LSP
+      lsp = {
+        enable = true;
+        formatOnSave = true;
+        inlayHints.enable = true;
+        lspSignature.enable = true;
+        lspconfig.enable = true;
+        lspkind.enable = true;
+        lspsaga = {
+          enable = true;
+          setupOpts = {
+            ui = {
+              code_action = "";
+            };
+            lightbulb = {
+              sign = false;
+              virtual_text = true;
+            };
+            breadcrumbs.enable = false;
+          };
+        };
+        null-ls.enable = true;
+        otter-nvim = {
+          enable = true;
+          setupOpts = {
+            buffers.set_filetype = true;
+            lsp = {
+              diagnostic_update_event = [
+                "BufWritePost"
+                "InsertLeave"
+              ];
+            };
+          };
+        };
+        servers.nixd.settings.nil.nix.autoArchive = true;
+        # TODO: I don't think this works
+        servers.clangd.extraOptions = [
+          "--header-insertion=never"
+        ];
+        trouble.enable = true;
+      };
+
+      languages = {
+        enableDAP = true;
+        enableExtraDiagnostics = true;
+        enableFormat = true;
+        enableTreesitter = true;
+
+        bash.enable = true;
+        clang = {
+          enable = true;
+          lsp = {
+            enable = true;
+            servers = ["clangd"];
+          };
+        };
+        cmake.enable = true;
+        css.enable = true;
+        docker.enable = true;
+        html.enable = true;
+        python = {
+          enable = true;
+          lsp = {
+            enable = true;
+            servers = ["pyright"];
+          };
+        };
+        markdown = {
+          enable = true;
+          format.type = ["prettier"];
+          extensions = {
+            markview-nvim = {
+              enable = true;
+            };
+          };
+          extraDiagnostics.enable = true;
+        };
+
+        nix.enable = true;
+      };
+
+      formatter = {
+        conform-nvim = {
+          enable = true;
+        };
+      };
+
+      ##
       #  Options
       ##
 
       # Enable NodeJS support
+      # TODO: Does this belong in another section?
       withNodeJs = true;
 
       # Other options
+      # TODO: Do I want to be explicit about defaults?
       options = {
-      autoindent = true;
-	shiftwidth = 2;
-	signcolumn = "yes";
-	splitbelow = true;
-	splitright = true;
-	tabstop = 2;
-	termguicolors = true;
-	wrap = true;
+        autoindent = true;
+        shiftwidth = 2;
+        signcolumn = "yes";
+        splitbelow = true;
+        splitright = true;
+        tabstop = 2;
+        termguicolors = true;
+        wrap = true;
       };
 
       # Global variables
-      globals = {
-        mapleader = " ";
-      };
+      # TODO: Move this to top of options file
+      globals.mapleader = " ";
 
       # Clipboard options
       clipboard = {
         enable = true;
-	providers.wl-copy.enable = true;
-	providers.xclip.enable = true;
-	registers = "unnamedplus";
+        providers.wl-copy.enable = true; # For wayland
+        providers.xclip.enable = true; # For everything else
+        registers = "unnamedplus";
       };
 
       # Theme
       theme = {
-	enable = true;
-	name = lib.mkForce "catppuccin";
-      style = lib.mkForce "mocha";
-      transparent = lib.mkForce true;
+        enable = true;
+        name = lib.mkForce "catppuccin";
+        style = lib.mkForce "mocha";
+        transparent = lib.mkForce true;
       };
-
     };
   };
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
 }
-
