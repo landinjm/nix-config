@@ -14,15 +14,16 @@
   home.packages = with pkgs; [
     neovim
     cmakeWithGui
+    zlib.static
+    zlib.dev
     gcc
-    openmpi
+    mpi.dev
     python3
     clang-tools
     openblas
     boost
     scalapack
     symengine
-    hdf5-mpi
     ripgrep # TODO: Move to nvp
     xclip # TODO: Move to nvp
   ];
@@ -461,6 +462,18 @@
         providers.wl-copy.enable = true; # For wayland
         providers.xclip.enable = true; # For everything else
         registers = "unnamedplus";
+      };
+
+      # Telescope
+      telescope = {
+        enable = true;
+        extensions = [
+          {
+            name = "fzf";
+            packages = [pkgs.vimPlugins.telescope-fzf-native-nvim];
+            setup = {fzf = {fuzzy = true;};};
+          }
+        ];
       };
 
       # Theme

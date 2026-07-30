@@ -12,6 +12,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # System manager
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Run graphics accelerated nix programs
+    nix-system-graphics = {
+      url = "github:soupglasses/nix-system-graphics";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Window manager
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland.git?submodules=1";
@@ -77,26 +89,39 @@
     };
     */
   };
-  
-outputs = inputs @ { nixpkgs, ... }: {
-  homeConfigurations = {
-    trona = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
 
-      extraSpecialArgs = {
-        inherit inputs;
+  outputs = inputs @ {nixpkgs, ...}: {
+    systemConfigs = {
+      trona = inputs.system-manager.lib.makeSystemConfig {
+        modules = [
+          {
+            nixpkgs.overlays = [];
+            _module.args = {
+              inherit inputs;
+            };
+          }
+          inputs.nix-system-graphics.systemModules.default
+          ./hosts/trona/system.nix
+        ];
       };
+    };
 
-      modules = [
-        inputs.stylix.homeModules.stylix
-	inputs.nvf.homeManagerModules.default
-        ./hosts/trona/home.nix
-      ];
+    homeConfigurations = {
+      trona = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
+
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+
+        modules = [
+          inputs.stylix.homeModules.stylix
+          inputs.nvf.homeManagerModules.default
+          ./hosts/trona/home.nix
+        ];
+      };
     };
   };
-};
-
 }
-
