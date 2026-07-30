@@ -1,13 +1,6 @@
 {
   programs.nvf.settings.vim = {
-    globals.mapleader = " ";
-    binds = {
-      whichKey = {
-        enable = true;
-        # TODO: registers
-        register = {};
-      };
-    };
+   
     keymaps = [
       # General Mappings
       {
@@ -32,53 +25,6 @@
         desc = "Next Buffer";
       }
 
-      # Disable Arrow Keys in Normal Mode and Middle click
-      {
-        key = "<Up>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable Up Arrow";
-      }
-      {
-        key = "<Down>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable Down Arrow";
-      }
-      {
-        key = "<Left>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable Left Arrow";
-      }
-      {
-        key = "<Right>";
-        mode = "n";
-        silent = true;
-        action = "<Nop>";
-        desc = "Disable Right Arrow";
-      }
-      {
-        key = "<MiddleMouse>";
-        mode = ["n" "i" "v"]; # Normal, Insert, Visual
-        action = "<nop>"; # No Operation
-        silent = true;
-      }
-      {
-        key = "<2-MiddleMouse>"; # Désactive aussi le double clic molette
-        mode = ["n" "i" "v"];
-        action = "<nop>";
-        silent = true;
-      }
-      {
-        key = "<3-MiddleMouse>"; # Désactive aussi le double clic molette
-        mode = ["n" "i" "v"];
-        action = "<nop>";
-        silent = true;
-      }
 
       # UI
       {
@@ -138,28 +84,6 @@
         desc = "Hide tabline";
       }
 
-      # Windows
-      {
-        key = "<leader>ws";
-        mode = "n";
-        silent = true;
-        action = "<cmd>split<cr>";
-        desc = "Split";
-      }
-      {
-        key = "<leader>wv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>vsplit<cr>";
-        desc = "VSplit";
-      }
-      {
-        key = "<leader>wd";
-        mode = "n";
-        silent = true;
-        action = "<cmd>close<cr>";
-        desc = "Close";
-      }
 
       # QOL
       {
@@ -177,44 +101,9 @@
         desc = "Dedent and keep selection";
       }
 
-      # Move
-      {
-        key = "<C-h>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>h";
-        desc = "Move to left window";
-      }
-      {
-        key = "<C-j>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>j";
-        desc = "Move to bottom window";
-      }
-      {
-        key = "<C-k>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>k";
-        desc = "Move to top window";
-      }
-      {
-        key = "<C-l>";
-        mode = "n";
-        silent = true;
-        action = "<C-w>l";
-        desc = "Move to right window";
-      }
+    
 
-      # Save
-      {
-        key = "<C-s>";
-        mode = ["n" "i" "v"];
-        silent = true;
-        action = "<cmd>w<cr>";
-        desc = "Save file";
-      }
+     
     ];
   };
 }

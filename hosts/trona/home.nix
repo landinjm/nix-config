@@ -150,6 +150,129 @@
     settings.vim = {
 
       ##
+      #  Keymaps
+      ##
+      binds = {
+        whichKey = {
+          enable = true;
+        };
+      };
+      keymaps = [
+        # General mappings
+        # Disable arrow keys in normal mode and middle click
+         {
+        key = "<Up>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable up arrow";
+      }
+      {
+        key = "<Down>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable down arrow";
+      }
+      {
+        key = "<Left>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable left arrow";
+      }
+      {
+        key = "<Right>";
+        mode = "n";
+        silent = true;
+        action = "<Nop>";
+        desc = "Disable right arrow";
+      }
+      {
+        key = "<MiddleMouse>";
+        mode = ["n" "i" "v"];
+        action = "<nop>";
+        silent = true;
+      }
+      {
+        key = "<2-MiddleMouse>";
+        mode = ["n" "i" "v"];
+        action = "<nop>";
+        silent = true;
+      }
+      {
+        key = "<3-MiddleMouse>";
+        mode = ["n" "i" "v"];
+        action = "<nop>";
+        silent = true;
+      }
+
+      # UI
+
+      # Windows
+{
+        key = "<leader>ws";
+        mode = "n";
+        silent = true;
+        action = "<cmd>split<cr>";
+        desc = "Split";
+      }
+      {
+        key = "<leader>wv";
+        mode = "n";
+        silent = true;
+        action = "<cmd>vsplit<cr>";
+        desc = "VSplit";
+      }
+      {
+        key = "<leader>wd";
+        mode = "n";
+        silent = true;
+        action = "<cmd>close<cr>";
+        desc = "Close";
+      }
+
+        # Move
+      {
+        key = "<C-h>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>h";
+        desc = "Move to left window";
+      }
+      {
+        key = "<C-j>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>j";
+        desc = "Move to bottom window";
+      }
+      {
+        key = "<C-k>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>k";
+        desc = "Move to top window";
+      }
+      {
+        key = "<C-l>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>l";
+        desc = "Move to right window";
+      }
+
+ # Save
+      {
+        key = "<C-s>";
+        mode = ["n" "i" "v"];
+        silent = true;
+        action = "<cmd>w<cr>";
+        desc = "Save file";
+      }
+      ];
+
+      ##
       #  Mini
       ##
       mini = {
