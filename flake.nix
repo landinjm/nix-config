@@ -89,125 +89,42 @@
     };
     */
   };
-
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    chaotic,
-    nix-system-graphics,
-    ...
-  }: let
-    lib = nixpkgs.lib;
-
-    mkPkgs = system:
-      import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
-
-    mkStablePkgs = system:
-      import nixpkgs-stable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
-
-    /*
-    Define hosts explicitly.
-
-    type:
-      "nixos" = full NixOS machine
-      "home"  = standalone Home Manager, e.g. Ubuntu/macOS
-
-    system:
-      x86_64-linux
-      aarch64-linux
-      x86_64-darwin
-      aarch64-darwin
-    */
-    hosts = {
-      trona = {
-        type = "home";
-        system = "x86_64-linux";
-        username = "trona";
-      };
+  
+outputs = inputs @ { nixpkgs, ... }: {
+  systemConfigs = {
+    trona = inputs.system-manager.lib.makeSystemConfig {
+      modules = [
+        {
+        nixpkgs.overlays = [];
+          _module.args = {
+            inherit inputs;
+          };
+        }
+	inputs.nix-system-graphics.systemModules.default
+        ./hosts/trona/system.nix
+      ];
     };
-
-    mkHome = hostName: host: let
-      pkgs = mkPkgs host.system;
-      pkgs-stable = mkStablePkgs host.system;
-    in
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        extraSpecialArgs = {
-          inherit inputs pkgs-stable hostName;
-          username = host.username;
-          system = host.system;
-          isDarwin = lib.hasSuffix "darwin" host.system;
-          isLinux = lib.hasSuffix "linux" host.system;
-        };
-
-        modules = [
-          ./modules/home
-          ./hosts/${hostName}/home.nix
-        ];
-      };
-
-    mkNixos = hostName: host: let
-      pkgs = mkPkgs host.system;
-      pkgs-stable = mkStablePkgs host.system;
-    in
-      lib.nixosSystem {
-        system = host.system;
-
-        specialArgs = {
-          inherit inputs pkgs-stable hostName;
-          username = host.username;
-        };
-
-        modules = [
-          {
-            networking.hostName = hostName;
-            nixpkgs.config.allowUnfree = true;
-          }
-
-          ./modules/nixos
-          ./hosts/${hostName}
-
-          chaotic.nixosModules.default
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = {
-              inherit inputs pkgs-stable hostName;
-              username = host.username;
-              system = host.system;
-              isDarwin = false;
-              isLinux = true;
-            };
-
-            home-manager.users.${host.username} = import ./hosts/${hostName}/home.nix;
-          }
-        ];
-      };
-
-    nixosHosts = lib.filterAttrs (_: host: host.type == "nixos") hosts;
-
-    homeHosts = lib.filterAttrs (_: host: host.type == "home") hosts;
-  in {
-    nixosConfigurations = lib.mapAttrs mkNixos nixosHosts;
-
-    homeConfigurations = lib.mapAttrs mkHome homeHosts;
   };
+
+  homeConfigurations = {
+    trona = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+
+      extraSpecialArgs = {
+        inherit inputs;
+      };
+
+      modules = [
+        inputs.stylix.homeModules.stylix
+        ./hosts/trona/home.nix
+      ];
+    };
+  };
+};
+
 }
+
+# nix run 'github:numtide/system-manager' -- switch --flake .#trona --sudo
+
