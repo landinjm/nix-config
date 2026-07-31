@@ -18,12 +18,16 @@
     zlib.dev
     gcc
     mpi.dev
+    mpi
     python3
     clang-tools
     openblas
     boost
     scalapack
     symengine
+    ninja
+    doxygen
+    graphviz
     ripgrep # TODO: Move to nvp
     xclip # TODO: Move to nvp
   ];
