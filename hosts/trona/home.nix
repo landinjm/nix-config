@@ -165,6 +165,28 @@
 
       keymaps = [
         # General mappings
+        {
+          key = "<Esc><Esc>";
+          mode = "t";
+          silent = true;
+          action = "<C-\\><C-n>";
+          desc = "Exit terminal mode";
+        }
+        {
+          key = "gb";
+          mode = "n";
+          silent = true;
+          action = "<C-o>";
+          desc = "Go back";
+        }
+        {
+          key = "gf";
+          mode = "n";
+          silent = true;
+          action = "<C-i>";
+          desc = "Go forward";
+        }
+
         # Disable arrow keys in normal mode and middle click
         {
           key = "<Up>";
@@ -229,6 +251,20 @@
           silent = true;
           action = "<cmd>vsplit<cr>";
           desc = "VSplit";
+        }
+        {
+          key = "<leader>ts";
+          mode = "n";
+          silent = true;
+          action = "<cmd>split | terminal<cr>";
+          desc = "Split terminal";
+        }
+        {
+          key = "<leader>tv";
+          mode = "n";
+          silent = true;
+          action = "<cmd>vsplit | terminal<cr>";
+          desc = "VSplit terminal";
         }
         {
           key = "<leader>wd";
