@@ -28,6 +28,7 @@
     ninja
     doxygen
     graphviz
+    ffmpeg
     ripgrep # TODO: Move to nvp
     xclip # TODO: Move to nvp
   ];
