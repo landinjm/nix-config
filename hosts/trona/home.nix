@@ -14,21 +14,32 @@
   home.packages = with pkgs; [
     neovim
     cmakeWithGui
-    zlib.static
+    zlib
     zlib.dev
     gcc
     mpi.dev
     mpi
     python3
     clang-tools
-    openblas
+    blas
+    blas.dev
+    lapack
+    lapack.dev
     boost
+    boost.dev
     scalapack
+    scalapack.dev
     symengine
+    symengine.dev
     ninja
     doxygen
     graphviz
     ffmpeg
+    gmsh
+    adolc
+    hdf5-mpi
+    hdf5-mpi.dev
+    trilinos-mpi
     ripgrep # TODO: Move to nvp
     xclip # TODO: Move to nvp
   ];
