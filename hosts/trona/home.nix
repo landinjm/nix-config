@@ -34,6 +34,7 @@
     ninja
     doxygen
     graphviz
+    numdiff
     ffmpeg
     gmsh
     adolc
@@ -71,7 +72,7 @@
   programs.git = {
     enable = true;
 
-    settings.user.name = "landinjm";
+    settings.user.name = "Jason Landini";
     settings.user.email = "landinjm@umich.edu";
     settings.init.defaultBranch = "main";
     settings.push.autoSetupRemote = true;
