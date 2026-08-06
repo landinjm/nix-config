@@ -562,6 +562,17 @@
     colorScheme = lib.mkForce "Deeper";
   };
 
+  stylix = {
+    enable = true;
+    # TODO: Unify the themes through stylix
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+
+    image = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/leef_dark_purple_minimalist.png";
+      sha256 = "sha256-q6ufFdC/tMSb+mllw7XhilkAObemXXyps2SBlnMt7mY";
+    };
+  };
+
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
 }
