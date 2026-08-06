@@ -91,21 +91,6 @@
   };
 
   outputs = inputs @ {nixpkgs, ...}: {
-    systemConfigs = {
-      trona = inputs.system-manager.lib.makeSystemConfig {
-        modules = [
-          {
-            nixpkgs.overlays = [];
-            _module.args = {
-              inherit inputs;
-            };
-          }
-          inputs.nix-system-graphics.systemModules.default
-          ./hosts/trona/system.nix
-        ];
-      };
-    };
-
     homeConfigurations = {
       trona = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {

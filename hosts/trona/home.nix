@@ -36,6 +36,8 @@
     graphviz
     numdiff
     ffmpeg
+    valgrind
+    kdePackages.kcachegrind
     gmsh
     adolc
     hdf5-mpi
