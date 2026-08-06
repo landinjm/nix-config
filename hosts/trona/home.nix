@@ -51,6 +51,8 @@
   ];
 
   xdg.configFile."ghostty/config".text = ''
+    theme = Catppuccin Mocha
+
     window-padding-x = 10
     window-padding-y = 10
     confirm-close-surface = false
@@ -542,6 +544,22 @@
         transparent = lib.mkForce true;
       };
     };
+  };
+
+  programs.spicetify = let
+    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  in {
+    enable = true;
+
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+      volumePercentage
+    ];
+
+    theme = lib.mkForce spicePkgs.themes.sleek;
+    colorScheme = lib.mkForce "Deeper";
   };
 
   # Let Home Manager manage itself

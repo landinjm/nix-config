@@ -95,6 +95,7 @@
       trona = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
+          config.allowUnfree = true;
         };
 
         extraSpecialArgs = {
@@ -104,6 +105,7 @@
         modules = [
           inputs.stylix.homeModules.stylix
           inputs.nvf.homeManagerModules.default
+          inputs.spicetify-nix.homeManagerModules.default
           ./hosts/trona/home.nix
         ];
       };
