@@ -37,6 +37,9 @@
     numdiff
     ffmpeg
     valgrind
+    hyperfine
+    include-what-you-use
+    cppcheck
     kdePackages.kcachegrind
     gmsh
     adolc
